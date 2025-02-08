@@ -36,11 +36,11 @@ function playRound() {
 
     if(humanChoice === "INVALID" || humanChoice == null || humanChoice == undefined) {
         alert("Invalid Input! Try Again!");
-        roundCount--;
+        return;
     }
     else if(humanChoice === computerChoice) {
         alert("Draw!");
-        roundCount--;
+        return;
     }
     else if((humanChoice === "ROCK" && computerChoice === "SCISSOR") || (humanChoice === "PAPER" && computerChoice === "ROCK") || (humanChoice === "SCISSOR" && computerChoice === "PAPER")) {
         alert(`You Win! ${roundResult(humanChoice)}`)
@@ -51,6 +51,7 @@ function playRound() {
         computerPoints++;
     }
 
+    roundCount++;
     //Log
     console.log(`Round ${roundCount} result - You: ${humanChoice} | Computer: ${computerChoice}`);
 }
@@ -66,7 +67,6 @@ function roundResult(choice) {
 function playGame() {
     while(roundCount < 5) {
         playRound();
-        roundCount++;
     }
 
     if(humanPoints > computerPoints) {
