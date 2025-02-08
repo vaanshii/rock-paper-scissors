@@ -34,7 +34,7 @@ function playRound() {
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
 
-    if(humanChoice === "INVALID" || humanChoice == null || humanChoice == undefined) {
+    if(humanChoice === "INVALID") {
         alert("Invalid Input! Try Again!");
         return;
     }
