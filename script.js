@@ -2,59 +2,80 @@ let humanPoints = 0;
 let computerPoints = 0;
 let roundCount = 0;
 
-//playGame(); //main game loop
+const rockButton = document.querySelector(".ROCK");
+const paperButton = document.querySelector(".PAPER");
+const scissorButton = document.querySelector(".SCISSOR");
+const playerSide = document.querySelector(".player-side");
+const computerSide = document.querySelector(".computer-side");
+const heading = document.querySelector('nav h1');
+
+playGame();
+
+function displayToScreen(screen, asset) {
+    if(!screen.hasChildNodes()) {
+        image = document.createElement('img');
+        image.setAttribute('src', asset)
+        screen.appendChild(image);
+    }
+}
+
+function getPlayerChoice() {
+    return new Promise((choice) => {
+        rockButton.addEventListener('click', ()=> {
+            displayToScreen(playerSide, "assets/rock.png");
+            choice("ROCK");
+        });
+    
+        paperButton.addEventListener('click', () => {
+            displayToScreen(playerSide, "assets/paper.png");
+            choice("PAPER");
+        });
+    
+        scissorButton.addEventListener('click', () => {
+            displayToScreen(playerSide, "assets/scissors.png");
+            choice("SCISSOR");
+        });
+    });
+}
 
 function getComputerChoice() {
     let randomNumber = Math.floor((Math.random() * 3) + 1);
 
     switch(randomNumber) {
-        case 1: return "ROCK";
-        case 2: return "PAPER";
-        case 3: return "SCISSOR";
+        case 1: 
+            displayToScreen(computerSide, "assets/rock.png");
+            return "ROCK";
+        case 2: 
+            displayToScreen(computerSide, "assets/paper.png");
+            return "PAPER";
+        case 3: 
+            displayToScreen(computerSide, "assets/scissors.png");
+            return "SCISSOR";
     }
 }
 
-function getHumanChoice() {
-    let userInput = prompt("Rock | Paper | Scissor")
-
-    if(!(userInput == null || userInput == undefined)) {
-        userInput = userInput.toUpperCase();
-    }
-
-    switch(userInput) {
-        case "ROCK": return "ROCK";
-        case "PAPER": return "PAPER";
-        case "SCISSOR": return "SCISSOR";
-        default: return "INVALID";
-    }
-}
-
-function playRound() {
-    let humanChoice = getHumanChoice();
+async function playRound() {
+    let playerChoice = await getPlayerChoice();
     let computerChoice = getComputerChoice();
 
-    if(humanChoice === "INVALID") {
-        alert("Invalid Input! Try Again!");
+   if(playerChoice === computerChoice) {
+       heading.textContent = 'DRAW!';
         return;
     }
-    else if(humanChoice === computerChoice) {
-        alert("Draw!");
-        return;
-    }
-    else if((humanChoice === "ROCK" && computerChoice === "SCISSOR") ||
-            (humanChoice === "PAPER" && computerChoice === "ROCK") || 
-            (humanChoice === "SCISSOR" && computerChoice === "PAPER")) {
-        alert(`You Win! ${roundResult(humanChoice)}`)
+    else if((playerChoice === "ROCK" && computerChoice === "SCISSOR") ||
+            (playerChoice === "PAPER" && computerChoice === "ROCK") || 
+            (playerChoice === "SCISSOR" && computerChoice === "PAPER")) {
+        heading.textContent = `You Win! ${roundResult(playerChoice)}`;
         humanPoints++;
     }
     else {
-        alert(`You Lose! ${roundResult(computerChoice)}`)
+        heading.textContent = `You Lose! ${roundResult(computerChoice)}`;
         computerPoints++;
     }
 
     roundCount++;
     //Logging
-    console.log(`Round ${roundCount} result - You: ${humanChoice} | Computer: ${computerChoice}`);
+    console.log(`Round ${roundCount} result - You: ${playerChoice} | Computer: ${computerChoice}`);
 }
 
 function roundResult(choice) {
@@ -65,9 +86,9 @@ function roundResult(choice) {
     }
 }
 
-function playGame() {
+async function playGame() {
     while(roundCount < 5) {
-        playRound();
+       await playRound();
     }
 
     if(humanPoints > computerPoints) {

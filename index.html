@@ -14,35 +14,52 @@
     <style>
         .material-symbols-outlined {
           font-variation-settings:
-          'FILL' 0,
+          'FILL' 1,
           'wght' 500,
           'GRAD' 0,
           'opsz' 40;
           font-size: 40px;
+          cursor:pointer;
         }
         </style>
 </head>
 <body>
-    <nav>
-        <h1>Rock Paper Scissor</h1>
-        <div class="toggle-dark-mode">
-            <span class="material-symbols-outlined">
-                dark_mode
-            </span>
-        </div>
-    </nav>
+    <div class="container">
+        <nav>
+            <div class="nav-container">
+                <h1>Odin Project</h1>
+                <div class="toggle-dark-mode">
+                <span class="material-symbols-outlined">
+                    dark_mode
+                </span>
+            </div>
+        </nav>
 
-    <div class="game-container">
-        <div class="score-board"></div>
-        <div class="game-screen">
-            <div class="player-screen"></div>
-            <div class="computer-screen"></div>
+        <header>
+            <div class="header-container">
+                <h1>Rock Paper Scissors</h1>
+            </div>
+        </header>
+    
+        <div class="game-container">
+            <div class="score-board"> 0 - 0</div>
+            <div class="screen">
+                <div class="screen-container">
+                    <div class="player-side"></div>
+                    <div class="computer-side"></div>
+                </div>
+            </div>
+          
+            <div class="button-container">
+                <img class="ROCK" src="assets/rock.png" alt="Rock">
+                <img class="PAPER" src="assets/paper.png" alt="Paper">
+                <img class="SCISSOR" src="assets/scissors.png" alt="Scissors">
+            </div>
         </div>
-        <div class="button-container">
-            <img src="assets/rock.png" alt="Rock">
-            <img src="assets/paper.png" alt="Paper">
-            <img src="assets/scissors.png" alt="Scissors">
-        </div>
+
+        <footer>
+
+        </footer>
     </div>
 </body>
 </html>

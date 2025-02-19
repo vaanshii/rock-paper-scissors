@@ -11,8 +11,121 @@ html {
     box-sizing: border-box;
 }
 
-img {
-    max-width: 200px;
-    max-height: 200px;
+body {
+    width: inherit;
+    height: 100vh;
+    font-family: "Pixelify Sans", serif;
+    color: hsl(48, 18%, 27%);
+    font-optical-sizing: auto;
+    background: rgb(248,243,217);
+    background: linear-gradient(180deg, rgba(248,243,217,1) 45%, rgba(214,208,171,1) 66%);
 }
+img {
+    width: 200px;
+    height: 200px;
+}
+
+nav {
+    background-color: hsl(51, 51%, 84%);
+    width: inherit;
+    height: 5rem;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+    box-shadow: -3px 5px 10px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -3px 5px 10px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -3px 5px 10px -5px rgba(0,0,0,0.75);
+}
+
+nav .nav-container {
+    display: flex;
+    height: inherit;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
+}
+
+nav h1 {
+    font-size: 2.5rem;
+    cursor: default;
+}
+
+header {
+    width: inherit;
+    height: 15vh;
+}
+
+.header-container {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight:lighter;
+    text-shadow: 0px 3px 4px rgba(0,0,0,0.6);
+}
+
+.game-container {
+    width: 101.5vh;
+    margin: auto;
+}
+
+.score-board {
+    font-size: 3rem;
+    border: 3px solid;
+    width: 7rem;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.screen {
+    width: inherit;
+    height: 320px;
+    border: 8px double #504b38;
+    border-radius: 8px;
+}
+
+.screen-container {
+    width: inherit;
+    height: inherit;
+    display: flex;
+}
+
+.player-side,
+.computer-side {
+    width: 50vh;
+    height: 305px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-side img,
+.computer-side img {
+   width: 300px;
+   height: inherit;
+}
+
+.player-side {
+    border-right: 3px solid #504b38;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    border: 8px double #504b38;
+    border-radius: 8px;
+}
+
+.button-container img {
+    cursor: pointer;
+}
+
+
 
