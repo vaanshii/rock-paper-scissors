@@ -2,8 +2,7 @@ let humanPoints = 0;
 let computerPoints = 0;
 let roundCount = 0;
 
-playGame(); //main game loop
-//playRound(humanChoice, computerChoice); //for testing
+//playGame(); //main game loop
 
 function getComputerChoice() {
     let randomNumber = Math.floor((Math.random() * 3) + 1);
@@ -42,7 +41,9 @@ function playRound() {
         alert("Draw!");
         return;
     }
-    else if((humanChoice === "ROCK" && computerChoice === "SCISSOR") || (humanChoice === "PAPER" && computerChoice === "ROCK") || (humanChoice === "SCISSOR" && computerChoice === "PAPER")) {
+    else if((humanChoice === "ROCK" && computerChoice === "SCISSOR") ||
+            (humanChoice === "PAPER" && computerChoice === "ROCK") || 
+            (humanChoice === "SCISSOR" && computerChoice === "PAPER")) {
         alert(`You Win! ${roundResult(humanChoice)}`)
         humanPoints++;
     }
@@ -52,7 +53,7 @@ function playRound() {
     }
 
     roundCount++;
-    //Log
+    //Logging
     console.log(`Round ${roundCount} result - You: ${humanChoice} | Computer: ${computerChoice}`);
 }
 

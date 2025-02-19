@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Pixelify+Sans:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dark_mode" />
+    <link rel="stylesheet" href="style.css">
+    <script async src="script.js" defer></script>
     <title>Rock Paper Scissors</title>
+
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 500,
+          'GRAD' 0,
+          'opsz' 40;
+          font-size: 40px;
+        }
+        </style>
 </head>
 <body>
-    
+    <nav>
+        <h1>Rock Paper Scissor</h1>
+        <div class="toggle-dark-mode">
+            <span class="material-symbols-outlined">
+                dark_mode
+            </span>
+        </div>
+    </nav>
+
+    <div class="game-container">
+        <div class="score-board"></div>
+        <div class="game-screen">
+            <div class="player-screen"></div>
+            <div class="computer-screen"></div>
+        </div>
+        <div class="button-container">
+            <img src="assets/rock.png" alt="Rock">
+            <img src="assets/paper.png" alt="Paper">
+            <img src="assets/scissors.png" alt="Scissors">
+        </div>
+    </div>
 </body>
 </html>
