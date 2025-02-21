@@ -46,7 +46,6 @@ nav .nav-container {
 
 nav h1 {
     font-size: 2.5rem;
-    cursor: default;
 }
 
 header {
@@ -127,5 +126,93 @@ header h1 {
     cursor: pointer;
 }
 
+.pop-up-container {
+    width: 926px;
+    height: 200px;
+    position: absolute;
+    align-self: center  ;
+    display: flex;
+}
 
+.pop-up-box {
+    height: 12rem;
+    width: inherit;
+    background-color: hsl(51, 25%, 63%);
+    border-radius: 8px;
+    border: 7px double #504b38;
+    text-align: center;
+    font-size: 3rem;
+    opacity: 90%;
+    color: hsl(48, 19%, 11%);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+.continue-button {
+    width: 8rem;
+    height: 4rem;
+    font-family: "Pixelify Sans", serif;
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background-color:#eae0c2;
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#2f3322;
+	padding:12px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+    align-self: center;
+}
+
+.continue-button:hover {
+	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+.continue-button:active {
+	position:relative;
+	top:1px;
+}
+
+/* HTML: <div class="loader"></div> */
+.dot-loader {
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side,#333029 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  }
+
+footer {
+    width: 100%;
+    height: 3rem;
+    background-color: #504B38;
+    margin-top: 23px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.footer-container {
+    height: inherit;
+    width: 100%;
+    color: #eae0c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}

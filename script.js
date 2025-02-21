@@ -1,81 +1,108 @@
-let humanPoints = 0;
+let playerPoints = 0;
 let computerPoints = 0;
 let roundCount = 0;
+let isPopUpActive = false;
 
-const rockButton = document.querySelector(".ROCK");
-const paperButton = document.querySelector(".PAPER");
-const scissorButton = document.querySelector(".SCISSOR");
 const playerSide = document.querySelector(".player-side");
 const computerSide = document.querySelector(".computer-side");
-const heading = document.querySelector('nav h1');
+const heading = document.querySelector('.header-title');
+const scoreBoard = document.querySelector('.score-board');
+const popUpContainer = document.querySelector(".pop-up-container");
+const buttonContainer = document.querySelector(".button-container")
 
 playGame();
 
-function displayToScreen(screen, asset) {
-    if(!screen.hasChildNodes()) {
-        image = document.createElement('img');
+function playAgainPopUpBox(message) {
+    const playAgainBox = document.createElement("div");
+    const playAgainButton = document.createElement("button");
+    playAgainBox.classList.add("pop-up-box");
+    playAgainBox.textContent = message;
+    playAgainButton.classList.add("continue-button");
+    playAgainButton.textContent = "Play Again";
+
+    popUpContainer.appendChild(playAgainBox);
+    playAgainBox.appendChild(playAgainButton);
+
+    playAgainButton.addEventListener('click', () => {
+        isPopUpActive = false;
+        roundCount = 0; 
+        computerPoints = 0;
+        playerPoints = 0;
+        scoreBoard.textContent = "0 - 0";
+        clearScreen();
+        playGame();
+    });
+}
+
+function showWinnerBox(message) {
+    if(playerPoints === 5 || computerPoints === 5) return;
+    const popUpBox = document.createElement('div');
+    const continueButton = document.createElement('button');
+    popUpBox.classList.add("pop-up-box");
+    continueButton.classList.add("continue-button");
+    continueButton.textContent = "Continue"
+    popUpBox.textContent = message;
+    popUpContainer.appendChild(popUpBox);
+    popUpBox.appendChild(continueButton);
+    isPopUpActive = true;
+
+    continueButton.addEventListener("click", () => {
+        isPopUpActive = false;
+        clearScreen();
+    });
+}
+
+function simulateActionLoadingScreen() {
+    const computerDotLoader = document.createElement("div");
+    computerDotLoader.classList.add("dot-loader");
+    computerSide.appendChild(computerDotLoader);
+
+    return new Promise(() => {
+        setTimeout(() =>{
+            computerSide.removeChild(computerSide.lastChild);
+        }, 2000);
+    });
+}
+
+function displayImageToScreen(screen, asset) {
+    image = document.createElement('img');
+    if(!screen.hasChildNodes()) {  
         image.setAttribute('src', asset)
         screen.appendChild(image);
     }
 }
 
-function getPlayerChoice() {
+function clearScreen() {
+    if(playerSide.hasChildNodes() || computerSide.hasChildNodes()) {
+        playerSide.removeChild(playerSide.lastChild);
+        computerSide.removeChild(computerSide.lastChild);
+    }
+    popUpContainer.removeChild(popUpContainer.lastChild);
+}
+
+async function getPlayerChoice() {
     return new Promise((choice) => {
-        rockButton.addEventListener('click', ()=> {
-            displayToScreen(playerSide, "assets/rock.png");
-            choice("ROCK");
-        });
-    
-        paperButton.addEventListener('click', () => {
-            displayToScreen(playerSide, "assets/paper.png");
-            choice("PAPER");
-        });
-    
-        scissorButton.addEventListener('click', () => {
-            displayToScreen(playerSide, "assets/scissors.png");
-            choice("SCISSOR");
+        buttonContainer.addEventListener('click', (e) => {
+            if(isPopUpActive) return;
+            
+           
+            let target = e.target;
+            switch(target.id) {
+                case 'rock':
+                    displayImageToScreen(playerSide, "assets/rock.png");
+                    choice("ROCK");
+                    break;
+                case 'paper':
+                    displayImageToScreen(playerSide, "assets/paper.png");
+                    choice("PAPER");
+                    break;
+                case 'scissor':
+                    displayImageToScreen(playerSide, "assets/scissors.png");
+                    choice("SCISSOR");
+                    break;
+            }
         });
     });
-}
-
-function getComputerChoice() {
-    let randomNumber = Math.floor((Math.random() * 3) + 1);
-
-    switch(randomNumber) {
-        case 1: 
-            displayToScreen(computerSide, "assets/rock.png");
-            return "ROCK";
-        case 2: 
-            displayToScreen(computerSide, "assets/paper.png");
-            return "PAPER";
-        case 3: 
-            displayToScreen(computerSide, "assets/scissors.png");
-            return "SCISSOR";
-    }
-}
-
-async function playRound() {
-    let playerChoice = await getPlayerChoice();
-    let computerChoice = getComputerChoice();
-
-   if(playerChoice === computerChoice) {
-       heading.textContent = 'DRAW!';
-        return;
-    }
-    else if((playerChoice === "ROCK" && computerChoice === "SCISSOR") ||
-            (playerChoice === "PAPER" && computerChoice === "ROCK") || 
-            (playerChoice === "SCISSOR" && computerChoice === "PAPER")) {
-        heading.textContent = `You Win! ${roundResult(playerChoice)}`;
-        humanPoints++;
-    }
-    else {
-        heading.textContent = `You Lose! ${roundResult(computerChoice)}`;
-        computerPoints++;
-    }
-
-    roundCount++;
-    //Logging
-    console.log(`Round ${roundCount} result - You: ${playerChoice} | Computer: ${computerChoice}`);
 }
 
 function roundResult(choice) {
@@ -86,30 +113,65 @@ function roundResult(choice) {
     }
 }
 
-async function playGame() {
-    while(roundCount < 5) {
-       await playRound();
-    }
-
-    if(humanPoints > computerPoints) {
-        alert("Human Wins!")
-    }
-    else {
-        alert("Computer Wins!");
-    }
-
-    console.log(`Human Score: ${humanPoints}`); // for logging
-    console.log(`Computer Score: ${computerPoints}`);
-
-    roundCount = 0; // resetting
-    computerPoints = 0;
-    humanPoints = 0;
+function getComputerChoice() {
+    let randomNumber = Math.floor((Math.random() * 3) + 1);
     
-    if (confirm("Would you like to play again?")) {
-        playGame();
+    switch(randomNumber) {
+        case 1: 
+            displayImageToScreen(computerSide, "assets/rock.png");
+            return "ROCK";
+        case 2: 
+            displayImageToScreen(computerSide, "assets/paper.png");
+            return "PAPER";
+        case 3: 
+            displayImageToScreen(computerSide, "assets/scissors.png");
+            return "SCISSOR";
+    }
+}
+
+async function playRound() {
+    let playerChoice = await getPlayerChoice();
+    simulateActionLoadingScreen();
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
+    let computerChoice = await getComputerChoice();
+    await new Promise(resolve => setTimeout(resolve, 1200)); 
+
+   if(playerChoice === computerChoice) {
+        showWinnerBox('Draw!');
+        return;
+    }
+    else if((playerChoice === "ROCK" && computerChoice === "SCISSOR") ||
+            (playerChoice === "PAPER" && computerChoice === "ROCK") || 
+            (playerChoice === "SCISSOR" && computerChoice === "PAPER")) {
+
+        playerPoints++;       
+        showWinnerBox(`You Win! ${roundResult(playerChoice)}`);
     }
     else {
-        alert("Thanks for playing!")
+        computerPoints++;
+        showWinnerBox(`You Lose! ${roundResult(computerChoice)}`);
     }
+    scoreBoard.textContent = `${playerPoints} - ${computerPoints}`;
+
+    roundCount++;
+    //Logging
+    console.log(`Round ${roundCount} result - You: ${playerChoice} | Computer: ${computerChoice}`);
+}
+
+async function playGame() {
+    while(roundCount <= 10) {
+       await playRound();
+       if(playerPoints === 5 || computerPoints === 5) break;
+    }   
+
+    if(playerPoints > computerPoints) {
+       playAgainPopUpBox("Player Wins!");
+    }
+    else {
+        playAgainPopUpBox("Computer Wins!");
+    }
+
+    console.log(`Human Score: ${playerPoints}`); // for logging
+    console.log(`Computer Score: ${computerPoints}`);
 }
 

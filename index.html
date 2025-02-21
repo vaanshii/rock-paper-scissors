@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Pixelify+Sans:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dark_mode" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Pixelify+Sans:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dark_mode" />
     <link rel="stylesheet" href="style.css">
     <script async src="script.js" defer></script>
     <title>Rock Paper Scissors</title>
 
     <style>
         .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 1,
-          'wght' 500,
-          'GRAD' 0,
-          'opsz' 40;
-          font-size: 40px;
-          cursor:pointer;
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 500,
+                'GRAD' 0,
+                'opsz' 40;
+            font-size: 40px;
+            cursor: pointer;
         }
-        </style>
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <nav>
-            <div class="nav-container">
-                <h1>Odin Project</h1>
-                <div class="toggle-dark-mode">
+    <nav>
+        <div class="nav-container">
+            <h1>Odin Project</h1>
+            <div class="toggle-dark-mode">
                 <span class="material-symbols-outlined">
                     dark_mode
                 </span>
             </div>
-        </nav>
+    </nav>
 
-        <header>
-            <div class="header-container">
-                <h1>Rock Paper Scissors</h1>
-            </div>
-        </header>
-    
-        <div class="game-container">
-            <div class="score-board"> 0 - 0</div>
-            <div class="screen">
-                <div class="screen-container">
-                    <div class="player-side"></div>
-                    <div class="computer-side"></div>
+    <header>
+        <div class="header-container">
+            <h1 class="header-title">Rock Paper Scissors</h1>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div class="score-board"> 0 - 0</div>
+        <div class="screen">
+            <div class="screen-container">
+                <div class="player-side"></div>
+                <div class="computer-side"></div>
+                <div class="pop-up-container">
+
                 </div>
-            </div>
-          
-            <div class="button-container">
-                <img class="ROCK" src="assets/rock.png" alt="Rock">
-                <img class="PAPER" src="assets/paper.png" alt="Paper">
-                <img class="SCISSOR" src="assets/scissors.png" alt="Scissors">
             </div>
         </div>
 
-        <footer>
-
-        </footer>
+        <div class="button-container">
+            <img id="rock" src="assets/rock.png" alt="Rock">
+            <img id="paper" src="assets/paper.png" alt="Paper">
+            <img id="scissor" src="assets/scissors.png" alt="Scissors">
+        </div>
     </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>Thank you for playing! <  3</p>
+        </div>
+    </footer>
 </body>
+
 </html>
