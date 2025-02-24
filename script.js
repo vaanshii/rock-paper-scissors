@@ -79,11 +79,9 @@ function displayImageToScreen(screen, asset) {
 }
 
 function clearScreen() {
-  if (playerSide.hasChildNodes() || computerSide.hasChildNodes()) {
-    playerSide.removeChild(playerSide.lastChild);
-    computerSide.removeChild(computerSide.lastChild);
-  }
-  popUpContainer.removeChild(popUpContainer.lastChild);
+  if(playerSide.lastChild) playerSide.removeChild(playerSide.lastChild);
+  if(computerSide.lastChild) computerSide.removeChild(computerSide.lastChild);
+  if(popUpContainer.lastChild) popUpContainer.removeChild(popUpContainer.lastChild);
 }
 
 async function getPlayerChoice() {
