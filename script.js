@@ -2,7 +2,13 @@ const gameState = {
   playerPoints: 0,
   computerPoints: 0,
   roundCount: 0,
-  isPopUpActive: false,
+  isPopUpActive: false
+};
+
+const outcomes = {
+  ROCK: "Rock beats Scissors",
+  PAPER: "Paper beats Rock",
+  SCISSOR: "Scissor beats Paper"
 };
 
 const playerSide = document.querySelector(".player-side");
@@ -109,14 +115,7 @@ async function getPlayerChoice() {
 }
 
 function roundResult(choice) {
-  switch (choice) {
-    case "ROCK":
-      return "Rock beats Scissors";
-    case "PAPER":
-      return "Paper beats Rock";
-    case "SCISSOR":
-      return "Scissors beats Paper";
-  }
+  return outcomes[choice] || "Unknown";
 }
 
 function getComputerChoice() {
